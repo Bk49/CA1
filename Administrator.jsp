@@ -7,7 +7,7 @@
 <title>Administrator</title>
 </head>
 <body>
-<a href="productTable.jsp">Products</a>
+<a href="productTable.jsp?page=1">Products</a>
 <a href="customerTable.jsp">Customers</a>
 <%
 int id = 1;
@@ -28,7 +28,6 @@ int phoneNo=0;
           String sqlStr = "SELECT name, pwd, email, pfp, address, phoneNo FROM user WHERE userId="+id;         
           ResultSet rs = stmt.executeQuery(sqlStr);
 
-          // Step 6: Process Result
           if (rs.next()) {
               name = rs.getString("name");
               pwd = rs.getString("pwd");
@@ -38,7 +37,6 @@ int phoneNo=0;
               phoneNo = rs.getInt("phoneNo");
           }
         
-          // Step 7: Close connection
           conn.close();
      } catch (Exception e) {
         System.err.println("Error :" + e);
