@@ -14,6 +14,7 @@ String pwd = request.getParameter("pwd");
 
 String link;
 int id;
+String role;
    try {
 	   		
           // Step 2: Define Connection URL
@@ -35,7 +36,12 @@ int id;
     		rs = pstmt.executeQuery();
     		if(rs.next()){
     			id = rs.getInt("UserId");
-    			response.sendRedirect("Home.jsp?id="+id);
+    			role = rs.getString("role");
+    			if(role.equals("M"))
+    				response.sendRedirect("Home.jsp?id="+id);
+    			else if(role.equals("A")){
+    				response.sendRedirect("Administrator?id="+id);
+    			}
     		}
     		else{
     			response.sendRedirect("Login.jsp?errorCode=invalidLogin");
