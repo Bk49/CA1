@@ -9,7 +9,10 @@
 </head>
 <body>
 <h1>Products in the database</h1><br>
+
+<!-- This button will allow the user to add new products into the database -->
 <button onClick="window.location.href='addProduct.jsp'">Add new item</button>
+
 <table> <!-- All products will be pushed into this table -->
 <tr>
 <th>No.</th>
@@ -70,7 +73,9 @@ String productCategory;
      }
 %>
 </table>
+
 <!-- Use this button to access to the next 10 rows in the second page -->
 <button onClick="window.location.href='productTable.jsp?page=2'">Page 2</button>
+
 </body>
 </html>

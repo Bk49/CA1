@@ -20,12 +20,14 @@ String category;
           Connection conn = DriverManager.getConnection(connURL); 
           Statement stmt = conn.createStatement();
 
-          String sqlStr = "SELECT productCategory FROM product";         
+          String sqlStr = "SELECT DISTINCT productCategory FROM product";         
           ResultSet rs = stmt.executeQuery(sqlStr);
 
           while (rs.next()) {
               category = rs.getString("productCategory");
-              out.print("<a href='ProductsOfCategory.jsp?category="+category+"'>"+category.toUpperCase()+"</a>");
+              
+              // Style this line of code!
+              out.print("<a href='ProductsOfCategory.jsp?category="+category+"'>"+category.toUpperCase()+"</a><br>");
           }
         
           conn.close();

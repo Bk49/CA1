@@ -33,7 +33,7 @@ int count=0;
      Connection conn = DriverManager.getConnection(connURL); 
      
  	PreparedStatement pstmt = conn.prepareStatement(insertStr);
-     pstmt.setString(1,name);
+     pstmt.setString(1, name);
      pstmt.setString(2, password);
      pstmt.setString(3, email);
      pstmt.setString(4, address);
