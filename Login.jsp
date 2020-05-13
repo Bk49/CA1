@@ -8,9 +8,16 @@
 </head>
 <body>
 <form action="verifyLogin.jsp" method="post">
-<input type="text" value="email" placeholder="Email"/>
-<input type="password" value="pwd" placeholder="Password"/>
+<input type="text" name="email" placeholder="Email"/>
+<input type="password" name="pwd" placeholder="Password"/>
 <input type="submit" value="Login"/>
 </form>
+<%
+	String errorCode = request.getParameter("errorCode");
+	if(errorCode == null) return;
+	if(errorCode.equals("invalidLogin")){
+		out.print("Incorrect input! Please check again!");
+	}
+%>
 </body>
 </html>
