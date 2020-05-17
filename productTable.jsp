@@ -24,11 +24,14 @@
 </tr>
 <%
 int pg = 1 ;// Integer.parseInt(request.getParameter("page"));
+if(request.getParameter("page") != null){
+	pg= Integer.parseInt(request.getParameter("page"));
+}
 int startRow = pg*10-10;
 
 int productId;
 String productName;
-int count = 0;
+int count = startRow+1;
 
 double costPrice;
 double retailPrice;
@@ -60,8 +63,8 @@ String productCategory;
               "<td>"+retailPrice+"<td>"+
               "<td>"+stockQuantity+"<td>"+
               "<td>"+productCategory+"<td>"+
-              "<td><button onClick=\"window.location.href='editProduct.jsp?productId="+productId+"'\">Edit<button><td>"+
-              "<td><button onClick=\"window.location.href='deleteProduct.jsp?productId="+productId+"'\">Edit<button><td>"+
+              "<td><button onClick=\"window.location.href='editProduct.jsp?productId="+productId+"'\">Edit</button><td>"+
+              "<td><button onClick=\"window.location.href='deleteProduct.jsp?productId="+productId+"'\">Delete</button><td>"+
               "</tr>");
               
               count++;

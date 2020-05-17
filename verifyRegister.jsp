@@ -12,7 +12,7 @@
 String name = request.getParameter("fname")+" "+request.getParameter("lname");
 String password = request.getParameter("pwd");
 String passwordConfirm = request.getParameter("pwdc");
-if(password != passwordConfirm)  response.sendRedirect("CustomerRegistration.jsp?errorCode=invalidPw"); 
+if(!password.equals(passwordConfirm))  response.sendRedirect("CustomerRegistration.jsp?errorCode=invalidPw"); 
 String email = request.getParameter("email");
 String address = request.getParameter("address");
 String phoneNoStr = request.getParameter("phoneNo");

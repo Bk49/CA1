@@ -32,7 +32,6 @@
 		              out.print("<a href='profilePage.jsp?id="+id+"'><img src='"+pfp+"' alt='userPfp'></a>");
 		          }
 		        
-		          // Step 7: Close connection
 		          conn.close();
 		     } catch (Exception e) {
 		        System.err.println("Error :" + e);
@@ -41,8 +40,30 @@
 		out.print("<a href='Login.jsp'><img src='/images/u101.png' alt='defaultImage'></a>");
 	}
 %>
+<br>
 <%
-	
+	try {
+
+    	Class.forName("com.mysql.jdbc.Driver");
+   		String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+   
+   		Connection conn = DriverManager.getConnection(connURL); 
+   		Statement stmt = conn.createStatement();
+   
+   		String sqlStr = "SELECT productId,productName, costPrice, imageLocation FROM jad.product ORDER BY RAND() LIMIT 10";         
+   		ResultSet rs = stmt.executeQuery(sqlStr);
+   		while (rs.next()) {
+   			out.print("<a href='ProductDetail?productId="+rs.getInt("productId")+"'>"+
+   					"<img src='"+rs.getString("imageLocation")+"'>"+
+   					"<div>"+rs.getString("productName")+"<div>"+
+   					"<div>"+String.format("%.2f",rs.getDouble("costPrice"))+"<div>"+
+   					"</a>");
+   		}
+ 
+   		conn.close();
+	} catch (Exception e) {
+ 	System.err.println("Error :" + e);
+	}
 %>
 </body>
 </html>

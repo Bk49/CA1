@@ -27,7 +27,7 @@ String category;
               category = rs.getString("productCategory");
               
               // Style this line of code!
-              out.print("<a href='ProductsOfCategory.jsp?category="+category+"'>"+category.toUpperCase()+"</a><br>");
+              out.print("<a href='ProductListing.jsp?category="+category+"'>"+category.toUpperCase()+"</a><br>");
           }
         
           conn.close();

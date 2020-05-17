@@ -11,6 +11,9 @@
 <a href="customerTable.jsp">Customers</a>
 <%
 int id = 1;
+if(request.getParameter("id") != null){
+	id = Integer.parseInt(request.getParameter("id"));
+}
 String name="";
 String pwd="";
 String email="";

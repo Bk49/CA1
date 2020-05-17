@@ -35,12 +35,12 @@ String role;
     		pstmt.setString(2,pwd);
     		rs = pstmt.executeQuery();
     		if(rs.next()){
-    			id = rs.getInt("UserId");
+    			id = rs.getInt("userId");
     			role = rs.getString("role");
     			if(role.equals("M"))
     				response.sendRedirect("Home.jsp?id="+id);
     			else if(role.equals("A")){
-    				response.sendRedirect("Administrator?id="+id);
+    				response.sendRedirect("Administrator.jsp?id="+id);
     			}
     		}
     		else{
