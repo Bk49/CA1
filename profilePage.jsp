@@ -32,6 +32,7 @@ int userId = (int)session.getAttribute("userId");
     					"<div><label>Phone Number</label><input type='number name='phoneNo' value='"+rs.getString("phoneNo")+"'></div>"+
 						"<input type='submit' value='Update Profile Details'>"+
     					"</form>");
+				out.print("<button onClick='window.location.href=\"logout.jsp\"'>Log Out</button>");
     		}
     		else{
     			out.print("There is an error retrieving the data from the database!");
