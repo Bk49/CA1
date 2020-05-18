@@ -39,7 +39,8 @@ String role;
     			role = rs.getString("role");
     			if(role.equals("M")){
     				session.setAttribute("userId",id);
-    				response.sendRedirect("Home.jsp?");
+    				session.setMaxInactiveInterval(30 * 60);
+    				response.sendRedirect("Home.jsp");
     			}else if(role.equals("A")){
     				response.sendRedirect("Administrator.jsp?id="+id);
     			}
