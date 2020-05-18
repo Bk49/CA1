@@ -37,9 +37,10 @@ String role;
     		if(rs.next()){
     			id = rs.getInt("userId");
     			role = rs.getString("role");
-    			if(role.equals("M"))
-    				response.sendRedirect("Home.jsp?id="+id);
-    			else if(role.equals("A")){
+    			if(role.equals("M")){
+    				session.setAttribute("userId",id);
+    				response.sendRedirect("Home.jsp?");
+    			}else if(role.equals("A")){
     				response.sendRedirect("Administrator.jsp?id="+id);
     			}
     		}

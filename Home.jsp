@@ -10,9 +10,12 @@
 <body>
 <%
 	int id = 0;
-	String parseId = request.getParameter("id");
-	if(parseId != null){
-		id = Integer.parseInt(parseId); 
+	//String parseId = request.getParameter("id");
+	//if(parseId != null){
+	//	id = Integer.parseInt(parseId); 
+	//}
+	if(session.getAttribute("userId")!=null){
+	id = (int)session.getAttribute("userId");
 	}
 	
 	if(id>0){
@@ -25,11 +28,11 @@
 		          Connection conn = DriverManager.getConnection(connURL); 
 		          Statement stmt = conn.createStatement();
 		          
-		          String sqlStr = "SELECT pfp FROM user WHERE id="+id;         
+		          String sqlStr = "SELECT pfp FROM user WHERE userId="+id;         
 		          ResultSet rs = stmt.executeQuery(sqlStr);
 		          if (rs.next()) {
 		              pfp = rs.getString("pfp");
-		              out.print("<a href='profilePage.jsp?id="+id+"'><img src='"+pfp+"' alt='userPfp'></a>");
+		              out.print("<a href='profilePage.jsp'><img src='"+pfp+"' alt='userPfp'></a>");
 		          }
 		        
 		          conn.close();

@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-int userId = Integer.parseInt(request.getParameter("id"));
+int userId = (int)session.getAttribute("userId");
    try {
           String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
 

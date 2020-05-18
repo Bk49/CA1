@@ -9,6 +9,35 @@
 </head>
 <body>
 <%
+if(session.getAttribute("userId") == null){
+	out.print("<a href='Login.jsp'><img src='/images/u101.png' alt='defaultImage'></a>");
+}
+else{
+	int userId = (int)session.getAttribute("userId");
+	String pfp;
+	Class.forName("com.mysql.jdbc.Driver");
+	 try {
+        String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+        
+        Connection conn = DriverManager.getConnection(connURL); 
+        Statement stmt = conn.createStatement();
+        
+        String sqlStr = "SELECT pfp FROM user WHERE userId=?";
+        
+        ResultSet rs;
+        
+  		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+  		pstmt.setInt(1,userId);
+  		rs = pstmt.executeQuery();
+  		if(rs.next()){
+  			out.print("<a href='profilePage.jsp'><img src='"+rs.getString("pfp")+"' alt='defaultImage'></a>");
+  		}else{
+  			out.print("<a href='Login.jsp'><img src='/images/u101.png' alt='defaultImage'></a>");
+		}
+   } catch (Exception e) {
+      System.err.println("Error :" + e);
+   }
+}
 String productId = request.getParameter("productId");
 
    try {
