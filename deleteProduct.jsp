@@ -18,7 +18,7 @@ String name;
           Connection conn = DriverManager.getConnection(connURL); 
           Statement stmt = conn.createStatement();
 
-          String sqlStr = "SELECT productName, briefDescription, detailDescription, costPrice, retailPrice, stockQuantity, productCategory, imageLocation FROM product";         
+          String sqlStr = "SELECT productName, briefDescription, detailDescription, costPrice, retailPrice, stockQuantity, productCategory, imageLocation FROM product WHERE productId ="+productId;         
           ResultSet rs = stmt.executeQuery(sqlStr);
 
           if (rs.next()) {
@@ -27,8 +27,8 @@ String name;
           			"<div>"+rs.getString("productName")+"</div>"+
           			"<div>"+rs.getString("briefDescription")+"</div>"+
           			"<div>"+rs.getString("detailDescription")+"</div>"+
-          			"<div>"+rs.getString("costPrice")+"</div>"+
-          			"<div>"+rs.getString("retailPrice")+"</div>"+
+          			"<div>"+String.format("%.2f",rs.getDouble("costPrice"))+"</div>"+
+          			"<div>"+String.format("%.2f",rs.getDouble("retailPrice"))+"</div>"+
           			"<div>"+rs.getString("stockQuantity")+"</div>"+
           			"<div>"+rs.getString("productCategory")+"</div>"+
 					"</div>");
