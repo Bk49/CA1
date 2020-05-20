@@ -56,7 +56,7 @@
    		String sqlStr = "SELECT productId,productName, costPrice, imageLocation FROM jad.product ORDER BY RAND() LIMIT 10";         
    		ResultSet rs = stmt.executeQuery(sqlStr);
    		while (rs.next()) {
-   			out.print("<a href='ProductDetail?productId="+rs.getInt("productId")+"'>"+
+   			out.print("<a href='ProductDetail.jsp?productId="+rs.getInt("productId")+"'>"+
    					"<img src='"+rs.getString("imageLocation")+"'>"+
    					"<div>"+rs.getString("productName")+"<div>"+
    					"<div>"+String.format("%.2f",rs.getDouble("costPrice"))+"<div>"+
