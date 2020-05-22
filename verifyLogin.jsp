@@ -18,9 +18,10 @@ String role;
    try {
 	   		
           // Step 2: Define Connection URL
-          String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
-
+ 				// String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+		         String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
           // Step 3: Establish connection to URL
+          
           Connection conn = DriverManager.getConnection(connURL); 
          // Step 4: Create Statement object
           Statement stmt = conn.createStatement();
@@ -42,7 +43,8 @@ String role;
     				session.setMaxInactiveInterval(30 * 60);
     				response.sendRedirect("Home.jsp");
     			}else if(role.equals("A")){
-    				response.sendRedirect("Administrator.jsp?id="+id);
+    				session.setAttribute("userId",id);
+    				response.sendRedirect("Administrator.jsp");
     			}
     		}
     		else{

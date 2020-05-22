@@ -11,9 +11,9 @@
 <a href="customerTable.jsp">Customers</a>
 <%
 int id = 1;
-if(request.getParameter("id") != null){
-	id = Integer.parseInt(request.getParameter("id"));
-}
+if(session.getAttribute("userId") != null){
+	id = (int)session.getAttribute("userId");
+	}
 String name="";
 String pwd="";
 String email="";
@@ -22,7 +22,8 @@ String address="";
 int phoneNo=0;
     try {
            Class.forName("com.mysql.jdbc.Driver");
-          String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+       //   String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+          String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
 
           Connection conn = DriverManager.getConnection(connURL); 
 

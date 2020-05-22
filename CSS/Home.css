@@ -1,0 +1,159 @@
+div.disabled {
+    overflow-x: hidden; 
+    overflow-y: scroll;
+}
+
+html{
+	    scroll-behavior: smooth;
+	
+}
+
+body {
+			    background-color: rgb(28,28,28);
+	
+}
+
+.profilePic {
+  max-width: 50px!important;
+  height:auto!important;
+  margin:0;
+}
+
+.navbar-custom { 
+    background-color: rgb(34,38,48); 
+} 
+.container {
+		box-shadow: 0 3px 10px 0 rgba(44,44,45,.07), inset 0 0 0 1px rgba(44,44,45,.07);
+	    border-radius: 8px;
+			    background-color: rgb(35,38,47)!important;
+	
+}
+
+.catCon{
+	background-color: #fff;
+	border-radius: 8px;
+	height: 300px;
+	    
+}
+.catIcon{
+    width: 150px;   
+      display: block;
+  margin-left: auto;
+  margin-right: auto;
+  	margin-top:10px;
+}
+.catIcon1{
+    width: 100px;   
+      display: block;
+      margin-left: auto;
+     margin-right: auto;
+}
+
+.catCard:hover{
+		margin-top:0px;
+	
+	transition: 0.3s;
+}
+.catCard {
+	  	 margin-top:10px;
+}
+.cardProduct:hover {
+        box-shadow: 0px 0px 26px -2px rgba(55,55,55,0.1);
+	    border-radius: 8px;
+	    background-color: rgb(58,65,82)!important;
+	    transition: 0.3s;
+}
+
+.card {
+	border: 0px !important;
+					    background-color: rgb(35,38,47)!important;
+	
+}
+
+.margin{
+	padding: 10px;
+}
+
+a:hover {
+	text-decoration: none;
+	color: white
+}
+
+a{
+	color: white;
+}
+
+.main {
+        width:100%;
+        height: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        
+    }
+
+
+    .mainBackground {
+    /* The image used */
+	    background-image: url('../images/Wallpaper.jpg');
+    
+    /* Set a specific height */
+        min-height: 650px; 
+    /* Background picture attributes: */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+
+     .exploreBtn {
+        position: absolute;
+        top: 425px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 13px;
+        line-height: 20px;
+        color:black;
+        border:none;
+        width: 110px;
+        height: 40px;
+    }
+    .maintext {
+        position: absolute;
+        top: 300px;
+        width: 800px;
+        left: 50%;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        background:none /*Index page has unique maintext */;
+
+        /* underline attribute too thick for liking, replaced with border bottom */
+
+}
+
+    #mainPara {
+        color: white;
+        text-shadow: 2px 4px 6px #000000;
+        font-size: 50px;
+        /* to make border-bottom attribute appear right below text */
+        margin: 0;
+        padding: 0;
+
+}
+
+    .subtext {
+        position: absolute;
+        top: 360px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background:none /*Index page has unique maintext */;
+}
+
+    #subPara {
+        color: white;
+        text-shadow: 2px 4px 6px #000000;
+        font-size: 25px;
+}
+
+
+

@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-int userId= Integer.parseInt(request.getParameter("userId"));
+int userId= (int)session.getAttribute("userId");
 String name = request.getParameter("name");
 String email = request.getParameter("email");
 String pfp = request.getParameter("pfp");
@@ -30,8 +30,9 @@ int count=0;
 
  try {
      // Step 2: Define Connection URL
-     String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
-
+		// String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+		 String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
+		 
      // Step 3: Establish connection to URL
      Connection conn = DriverManager.getConnection(connURL); 
      

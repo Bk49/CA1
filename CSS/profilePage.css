@@ -1,0 +1,57 @@
+body {
+			    background-color: rgb(28,28,28);
+	
+}
+
+.profilePic {
+  max-width: auto!important;
+  height:488px!important;
+  border-radius: 20px;
+  margin-top: 50px!important;
+  
+}
+
+.navbar-custom { 
+    background-color: rgb(34,38,48); 
+} 
+
+.formProfile {
+		background-color: rgb(35,38,47)!important;
+		width: 500px;
+		border-radius: 20px;
+		height: auto;
+		position: absolute;
+		top: 50px;
+		margin-bottom: 40px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		
+}
+.padding-0{
+  padding: 0 !important;
+  margin: 0 !important;
+ }
+
+.formProfile input {
+	width: 70%;
+	border: none;
+	padding: 10px;
+	margin:10px;
+}
+.submit {
+		border-radius: 20px;
+	
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
