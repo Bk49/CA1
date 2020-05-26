@@ -29,9 +29,13 @@ int phoneNo=0;
 
           Statement stmt = conn.createStatement();
 
-          String sqlStr = "SELECT name, pwd, email, pfp, address, phoneNo FROM user WHERE userId="+id;         
-          ResultSet rs = stmt.executeQuery(sqlStr);
+          String simpleProc = "{ call getUser(?) }";
 
+          CallableStatement cs = conn.prepareCall(simpleProc);
+          cs.setInt(1,id);
+          cs.execute();
+          ResultSet rs = cs.getResultSet();
+          
           if (rs.next()) {
               name = rs.getString("name");
               pwd = rs.getString("pwd");
