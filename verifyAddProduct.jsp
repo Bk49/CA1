@@ -41,7 +41,8 @@ stockQuantity = Integer.parseInt(stockQuantityStr);
 
  try {
 	  Class.forName("com.mysql.jdbc.Driver");
-     String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+     //String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+     String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
 
      Connection conn = DriverManager.getConnection(connURL); 
      
@@ -57,9 +58,11 @@ stockQuantity = Integer.parseInt(stockQuantityStr);
      count = pstmt.executeUpdate();
      conn.close(); 
 
-     out.print(count+" row inserted");
+		response.sendRedirect("successPage.jsp?type=ProductAdded");
 } catch (Exception e) {
    out.print("error");
+	  response.sendRedirect("errorPage.jsp");
+
 }
 %>
 </body>

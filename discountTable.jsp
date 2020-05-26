@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.sql.*,java.lang.*" %>    
+        <%@page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Products</title>
+<title>Discount Codes</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./CSS/productTable.css">
 </head>
@@ -30,80 +30,74 @@
    		 
   </div>
 </nav>
-
 <div class="container text-center">
-<h1>Products in the database</h1>
 
-<!-- This button will allow the user to add new products into the database -->
-<a class='btn btn-warning' href='addProduct.jsp'>Add new item</a><br><br>
+<h1>Discount Codes in the database</h1>
 
-<table class="table table-striped table-hover" > <!-- All products will be pushed into this table -->
+<!-- This button will allow the user to add new discount codes into the database -->
+<a class="btn btn-warning" href='addDiscount.jsp'>Add new discount code</a><br><br>
+
+<table class="table table-striped table-hover"><!-- All discount code will be pushed into this table -->
 <tr>
 <th>No.</th>
-<th>Product Name</th>
-<th>Cost Price</th>
-<th>Retail Price</th>
-<th>Stock Quantity</th>
-<th>Category</th>
-<th colspan="2">Product Options</th>
-
+<th>Discount Code</th>
+<th>Discount Price</th>
+<th>Discount Amount</th>
+<th>Usage Limit</th>
+<th>Number of uses</th>
+<th colspan="2">Discount Options</th>
 </tr>
 <%
-int pg = 1 ;// Integer.parseInt(request.getParameter("page"));
-if(request.getParameter("page") != null){
-	pg= Integer.parseInt(request.getParameter("page"));
+int pg=1;
+if(request.getParameter("page")!=null){
+	pg=Integer.parseInt(request.getParameter("page"));
 }
 int startRow = pg*10-10;
-
-int productId;
-String productName;
 int count = startRow+1;
+String discountPrice;
+double discountValue;
+String discountType;
+try {
+    Class.forName("com.mysql.jdbc.Driver");
+   //String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+   String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
 
-double costPrice;
-double retailPrice;
-int stockQuantity;
-String productCategory;
-    try {
-           Class.forName("com.mysql.jdbc.Driver");
-          //String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
-          String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
+   Connection conn = DriverManager.getConnection(connURL); 
+   Statement stmt = conn.createStatement();
 
-          Connection conn = DriverManager.getConnection(connURL); 
-          Statement stmt = conn.createStatement();
+   String sqlStr = "SELECT * FROM discount LIMIT "+startRow+",10";         
+   ResultSet rs = stmt.executeQuery(sqlStr);
 
-          String sqlStr = "SELECT productId, productName, costPrice, retailPrice, stockQuantity, productCategory FROM product LIMIT "+startRow+",10";         
-          ResultSet rs = stmt.executeQuery(sqlStr);
-
-          while (rs.next()) {
-              productId = rs.getInt("productId");
-              productName = rs.getString("productName");
-              costPrice = rs.getDouble("costPrice");
-              retailPrice = rs.getDouble("retailPrice");
-              stockQuantity = rs.getInt("stockQuantity");
-              productCategory = rs.getString("productCategory");
-              
-              // Printing all the items in the rs
-              out.print("<tr>"+
-              "<td>"+count+"</td>"+
-              "<td>"+productName+"</td>"+
-              "<td>"+costPrice+"</td>"+
-              "<td>"+retailPrice+"</td>"+
-              "<td>"+stockQuantity+"</td>"+
-              "<td>"+productCategory+"</td>"+
-              "<td><a class='btn btn-warning' href='editProduct.jsp?productId="+productId+"'\">Edit</button></td>"+
-              "<td><a class='btn btn-warning' href='deleteProduct.jsp?productId="+productId+"'\">Delete</button></td>"+
-              "</tr>");
-			count++;
-          }
-        
-          conn.close();
-     } catch (Exception e) {
-        System.err.println("Error :" + e);
-     }
+   while (rs.next()) {       
+	   discountValue = rs.getDouble("discountValue");
+	   discountType = rs.getString("discountType");
+	   if(discountType == "DIRECT"){
+		   discountPrice = "$"+String.format("%.2f",discountValue);
+	   }else{
+		   discountPrice = String.format("%.2f",discountValue)+"%";
+	   }
+       // Printing all the items in the rs
+       out.print("<tr>"+
+       "<td>"+count+"</td>"+
+       "<td>"+rs.getString("discountCode")+"</td>"+
+       "<td>"+discountPrice+"<td>"+
+       "<td>"+rs.getInt("usageLimit")+"</td>"+
+       "<td>"+rs.getInt("usageCount")+"</td>"+
+       "<td><a class='btn btn-warning' href='editDiscount.jsp?discountId="+rs.getInt("discountId")+"'\">Edit</button></td>"+
+       "<td><a class='btn btn-warning' href='deleteDiscount.jsp?discountId="+rs.getInt("discountId")+"'\">Delete</button></td>"+
+       "</tr>");
+       
+       count++;
+   }
+ 
+   conn.close();
+} catch (Exception e) {
+ System.err.println("Error :" + e);
+}
 %>
+
 </table>
 
-<!-- Use this button to access to the next 10 rows in the second page -->
 <div class='pagination'>
 <%
 double noOfProducts;
@@ -115,7 +109,7 @@ double noOfProducts;
           Connection conn = DriverManager.getConnection(connURL); 
           Statement stmt = conn.createStatement();
 
-          String sqlStr = "SELECT COUNT(*) count FROM product"; 
+          String sqlStr = "SELECT COUNT(*) count FROM discount"; 
           ResultSet rs = stmt.executeQuery(sqlStr);
          
 			while (rs.next()) {
@@ -123,7 +117,7 @@ double noOfProducts;
 		          double Pages = (double)Math.ceil((double) noOfProducts/(double)10.0);
 
 		          for(int i = 0 ; i < Pages; i++)
-			      out.print("<a  class='active' href='productTable.jsp?page="+(i+1)+"'>"+ (i+1) +"</a>");	          
+			      out.print("<a  class='active' href='discountTable.jsp?page="+(i+1)+"'>"+ (i+1) +"</a>");	          
 		          
           }
 

@@ -48,6 +48,8 @@ int count=0;
 
 } catch (Exception e) {
    out.print("error");
+	  response.sendRedirect("errorPage.jsp");
+
 }
 %>
 </body>

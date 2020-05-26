@@ -42,7 +42,8 @@ int count=0;
      count = pstmt.executeUpdate();
      conn.close(); 
 	
-     out.print(count+" rows inserted!");
+		response.sendRedirect("successPage.jsp?type=Register");
+
 } catch (Exception e) {
    out.print("The email has been used!<br>Server error!");
 }

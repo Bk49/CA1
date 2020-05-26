@@ -1,0 +1,29 @@
+
+body {
+	background-color: rgb(28,28,28)!important;
+}
+
+a:hover {
+	text-decoration: none!important;
+	color: white
+}
+
+.card {
+	margin-right: auto;
+	background-color: rgb(34,38,48)!important; 
+	margin-left: auto;
+}
+
+.margin {
+	margin-top: 100px;
+}
+
+.container {
+		box-shadow: 0 3px 10px 0 rgba(44,44,45,.07), inset 0 0 0 1px rgba(44,44,45,.07);
+	    border-radius: 8px;
+	
+}
+
+.navbar-custom { 
+    background-color: rgb(34,38,48)!important; 
+} 

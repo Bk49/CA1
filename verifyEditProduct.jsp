@@ -22,7 +22,8 @@ int count=0;
 
     try {
            Class.forName("com.mysql.jdbc.Driver");
-          String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+          //String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+          String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
 
           Connection conn = DriverManager.getConnection(connURL); 
           String updateStr = "UPDATE product SET productName=?, briefdescription=?, detailDescription=?, costPrice=?, retailPrice=?, stockQuantity=?, productCategory=?, imageLocation=? WHERE productId=?";         
@@ -39,9 +40,11 @@ int count=0;
           pstmt.setInt(9, productId);
           count = pstmt.executeUpdate();
           conn.close(); 
-          out.print(count+" rows updated!");
+		  response.sendRedirect("successPage.jsp?type=ProductEdit");
      } catch (Exception e) {
         out.print("An unknown error has occured");
+  	  response.sendRedirect("errorPage.jsp");
+
      }
 %>
 </body>
