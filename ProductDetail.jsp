@@ -103,11 +103,78 @@ String category;
       	</ul>   
   </div>
 </nav>
+
+<%!
+public double getDiscount(int discountId, double discountValue, String discountType, int usageLimit, int usageCount){
+	double totalDiscount =discountValue;
+
+
+			String updateStr = "UPDATE discount SET usageCount=? WHERE discountId=?";
+			int count=0;
+			
+			 try {
+		         String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
+		         Connection conn = DriverManager.getConnection(connURL); 
+		         
+			 	PreparedStatement pstmt = conn.prepareStatement(updateStr);
+		         pstmt.setInt(1, (++usageCount));
+		         pstmt.setInt(2, discountId);
+		         count = pstmt.executeUpdate();
+		         conn.close(); 
+
+		    } catch (Exception e) {
+		       
+		    }
+	return totalDiscount;
+}
+%>
+
 <br><br>
 <div class="container justify-content-center ">
 <div class="row justify-content-center">
 
 <%
+String discountCode= request.getParameter("discountCode");
+int discountValid =0;
+double discountValue =0;
+String discountType = "";
+int usageLimit =0;
+int usageCount =0;
+int discountId =0;
+if(discountCode != null){
+   try {
+	   
+          String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
+
+          Connection conn = DriverManager.getConnection(connURL); 
+          Statement stmt = conn.createStatement();
+
+          String sqlStr = "SELECT discountId, discountValue, discountType, usageLimit, usageCount FROM discount WHERE discountCode = ?";
+    
+          ResultSet rs;
+          
+    		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+    		pstmt.setString(1,discountCode);
+    		rs = pstmt.executeQuery();
+    		if(rs.next()){
+    			discountId = rs.getInt("discountId");
+    			discountValue = rs.getDouble("discountValue");
+    			discountType = rs.getString("discountType");
+    			usageLimit = rs.getInt("usageLimit");
+    			usageCount = rs.getInt("usageCount");
+    			discountValid = 1;
+    		}
+    		else{
+    			out.print("<div>The discount code is not found! Please enter a valid discount code!</div>");
+    			discountValid = 0;
+
+    		}
+    		
+     } catch (Exception e) {
+    	send.Redirect("errorPage.jsp");
+     }
+}
+
 String productId = request.getParameter("productId");
 
    try {
@@ -137,14 +204,29 @@ String productId = request.getParameter("productId");
 						"<p class=\"text-warning\">Detailed Description:</p>"+
 						"<p class=\"text-white\">"+rs.getString("detailDescription")+"</p>"+
 						"<p class=\"text-warning\">Cost Price:</p>"+
-						"<p class=\"text-white\">"+String.format("%.2f",rs.getDouble("costPrice"))+"</p>"+
-						"<p class=\"text-warning\">Retail Price:</p>"+
-						"<p class=\"text-white\">"+String.format("%.2f",rs.getDouble("retailPrice"))+"</p>"+
-						"<p class=\"text-warning\">Product Category:</p>"+
+						"<p class=\"text-white\">$"+String.format("%.2f",rs.getDouble("costPrice"))+"</p>"
+						);
+				if(discountValid ==1){
+					if("DIRECT".equals(discountType)){
+						out.print("<p class=\"text-warning\">Retail Price:</p>"+
+								"<strike class=\"text-danger\">$"+String.format("%.2f",rs.getDouble("retailPrice"))+"</strike>"+
+								"<p class=\"text-success\">$"+String.format("%.2f",(rs.getDouble("retailPrice"))- getDiscount(discountId, discountValue, discountType, usageLimit, usageCount))+"</p>");
+					}
+					else{
+						out.print("<p class=\"text-warning\">Retail Price:</p>"+
+								"<strike class=\"text-danger\">$"+String.format("%.2f",rs.getDouble("retailPrice"))+"</strike>"+
+								"<p class=\"text-success\">$"+String.format("%.2f",(rs.getDouble("retailPrice"))* ((100 - getDiscount(discountId, discountValue, discountType, usageLimit, usageCount)))/100)+"</p>");
+					}
+				}else{
+					out.print("<p class=\"text-warning\">Retail Price:</p>"+
+							"<p class=\"text-white\">$"+String.format("%.2f",rs.getDouble("retailPrice"))+"</p>");
+				}
+				out.print("<p class=\"text-warning\">Product Category:</p>"+
 						"<p class=\"text-white\">"+rs.getString("productCategory")+"</p>" +
 						"<p class=\"text-warning\">Discount Code:</p>"+
-						"<form class=\"form-inline my-2 my-lg-0\"><input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"DISCOUNT CODE\" aria-label=\"Search\">\n<button class=\"btn btn-warning my-2 my-sm-0\" type=\"submit\">APPLY</button></form></div>"
-						);
+						"<form  action=\"ProductDetail.jsp\" method='GET' class=\"form-inline my-2 my-lg-0\" ><input type='hidden' name='productId' value='"+productId+"'/><input class=\"form-control mr-sm-2\" type=\"search\" name='discountCode' placeholder=\"DISCOUNT CODE\" aria-label=\"Search\">\n<button class=\"btn btn-warning my-2 my-sm-0\" type=\"submit\">APPLY</button></form>"+
+						"<a>BUY</a>" +
+						"</div>");
     		}
     		else{
     			out.print("<p>There is an error retrieving the item!</p>");
@@ -156,6 +238,8 @@ String productId = request.getParameter("productId");
 
 </div>
 </div>
+
+
 
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

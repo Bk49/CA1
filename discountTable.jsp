@@ -32,7 +32,6 @@ String role;
 
                     // Step 5: Execute SQL Command
           String sqlStr = "SELECT * FROM user WHERE userId = ?" ;
-			System.out.println(sqlStr);
 
             ResultSet rs;
     		PreparedStatement pstmt = conn.prepareStatement(sqlStr);

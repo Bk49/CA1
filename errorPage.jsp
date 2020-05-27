@@ -21,32 +21,24 @@
 	</div>
 	<div class="row">
 		<div class="col-12">
-			<h1 class="text-warning">An Error Has Occurred</h1>
+			<h1 class="text-warning"></h1>
 			<%
 			String type = request.getParameter("type");
-				if("ProductEdit".equals(type)){
-					out.print("<h2 class='text-warning'>Product Successfully Updated!</h2><br>");
-			}else if("ProductDelete".equals(type)){
-				out.print("<h2 class='text-warning'>Product Successfully Deleted!</h2><br>");
-
-			}else if("ProductAdded".equals(type)){
-				out.print("<h2 class='text-warning'>Product Successfully Created!</h2><br>");
-
-			}else if("DiscountAdded".equals(type)){
-				out.print("<h2 class='text-warning'>Discount Successfully Added!</h2><br>");
-			}	
+				if((type) == null){
+					out.print("<h2 class='text-warning'>An Error Has Occurred!</h2><br>");
+			}else if("AccessDenied".equals(type)){
+				out.print("<h2 class='text-warning'>Access Denied!</h2><br>");
+			}
 			%>
 		</div>
 	</div>
     <div class="row">
     	<div class="col-12">
     	<%
-				if("ProductEdit".equals(type) || "ProductDelete".equals(type) || "ProductAdded".equals(type)){
-					out.print("<a class='btn btn-warning' href='productTable.jsp'>Product Table</a>");
-			
-			}else if("DiscountAdded".equals(type)){
-				out.print("<a class='btn btn-warning' href='discountTable.jsp'>Product Table</a>");
-			}
+    	 if("AccessDenied".equals(type)){
+				out.print("<a class='btn btn-warning' href='Home.jsp'>Back to Home</a>");
+		}
+
 			%>
 		</div>
 	</div>
