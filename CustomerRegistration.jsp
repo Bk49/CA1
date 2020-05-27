@@ -21,10 +21,13 @@
 		<input type="text" name="address" placeholder="Address"/>
 		<input type="tel" name="phoneNo" placeholder="Phone Number"/>
 			<%
-			String errorCode = request.getParameter("errorCode");
+				String errorCode = request.getParameter("errorCode");
 				if("invalidPw".equals(errorCode)){
 				out.print("<p class=\"text-danger\">Your password inputs in both fields does not tally!</p>");
-			}
+				}
+				if("invalidEmail".equals(errorCode)){
+				out.print("<p class=\"text-danger\">The email has been used!</p>");
+				}
 			%>;
 		<input type="submit" class="submit bg-warning" value="SUBMIT"/>
 		<p class="text-white">Already have an account? <a href="Login.jsp">Sign in here</a></p>

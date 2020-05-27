@@ -10,10 +10,49 @@
 </head>
 <body>
 <%
-int id = 1;
+int id = 0;
 if(session.getAttribute("userId") != null){
 	id = (int)session.getAttribute("userId");
 	}
+else{
+	response.sendRedirect("errorPage.jsp");
+}
+String role;
+   try {
+	   		
+          // Step 2: Define Connection URL
+ 				// String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+		         String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
+          // Step 3: Establish connection to URL
+          
+          Connection conn = DriverManager.getConnection(connURL); 
+         // Step 4: Create Statement object
+          Statement stmt = conn.createStatement();
+
+                    // Step 5: Execute SQL Command
+          String sqlStr = "SELECT * FROM user WHERE userId = ?" ;
+			System.out.println(sqlStr);
+
+            ResultSet rs;
+    		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+    		pstmt.setInt(1,id);
+    		rs = pstmt.executeQuery();
+    		
+			if(rs.next()){
+    			role = rs.getString("role");
+    			if(role.equals("M")){
+    				session.setAttribute("userId",id);
+    				session.setMaxInactiveInterval(30 * 60);
+    				response.sendRedirect("errorPage.jsp?type=AccessDenied");
+    			}
+			}
+    		
+     } catch (Exception e) {
+			response.sendRedirect("errorPage.jsp");
+     }
+%>
+
+<%	
 String name="";
 String pwd="";
 String email="";
@@ -83,6 +122,7 @@ int phoneNo=0;
        	       <p class="card-title text-white">Email: <%=email %></p>
        	       <p class="card-title text-white">Address: <%=address %></p>
       	       <p class="card-title text-white">Phone No: <%=phoneNo %></p>
+      	       <a class='btn btn-warning' href='logout.jsp'>Log Out</a>
          </div>
 	    </div>
 	    

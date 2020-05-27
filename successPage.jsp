@@ -24,19 +24,19 @@
 			<%
 			String type = request.getParameter("type");
 				if("ProductEdit".equals(type)){
-					out.print("<h2 class='text-warning'>Product Successfully Updated!</h2><br>");
+					out.print("<h2 class='text-success'>Product Successfully Updated!</h2><br>");
 			}else if("ProductDelete".equals(type)){
-				out.print("<h2 class='text-warning'>Product Successfully Deleted!</h2><br>");
+				out.print("<h2 class='text-success'>Product Successfully Deleted!</h2><br>");
 
 			}else if("ProductAdded".equals(type)){
-				out.print("<h2 class='text-warning'>Product Successfully Created!</h2><br>");
+				out.print("<h2 class='text-success'>Product Successfully Created!</h2><br>");
 
 			}else if("DiscountAdded".equals(type)){
-				out.print("<h2 class='text-warning'>Discount Successfully Added!</h2><br>");
+				out.print("<h2 class='text-success'>Discount Successfully Added!</h2><br>");
 			}else if("DiscountEdit".equals(type)){
-				out.print("<h2 class='text-warning'>Discount Successfully Updated!</h2><br>");
+				out.print("<h2 class='text-success'>Discount Successfully Updated!</h2><br>");
 			}else if("DiscountDelete".equals(type)){
-				out.print("<h2 class='text-warning'>Discount Successfully Deleted!</h2><br>");
+				out.print("<h2 class='text-success'>Discount Successfully Deleted!</h2><br>");
 			}
 			%>;
 		</div>
@@ -48,7 +48,7 @@
 					out.print("<a class='btn btn-warning' href='productTable.jsp'>Product Table</a>");
 			
 			}else if("DiscountAdded".equals(type) || "DiscountEdit".equals(type) || "DiscountDelete".equals(type)){
-				out.print("<a class='btn btn-warning' href='discountTable.jsp'>Product Table</a>");
+				out.print("<a class='btn btn-warning' href='discountTable.jsp'>Discount Table</a>");
 			}
 			%>;
 		</div>

@@ -10,6 +10,48 @@
 <link rel="stylesheet" type="text/css" href="./CSS/productTable.css">
 </head>
 <body>
+<%
+int id = 0;
+if(session.getAttribute("userId") != null){
+	id = (int)session.getAttribute("userId");
+	}
+else{
+	response.sendRedirect("errorPage.jsp");
+}
+String role;
+   try {
+	   		
+          // Step 2: Define Connection URL
+ 				// String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
+		         String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
+          // Step 3: Establish connection to URL
+          
+          Connection conn = DriverManager.getConnection(connURL); 
+         // Step 4: Create Statement object
+          Statement stmt = conn.createStatement();
+
+                    // Step 5: Execute SQL Command
+          String sqlStr = "SELECT * FROM user WHERE userId = ?" ;
+			System.out.println(sqlStr);
+
+            ResultSet rs;
+    		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+    		pstmt.setInt(1,id);
+    		rs = pstmt.executeQuery();
+    		
+			if(rs.next()){
+    			role = rs.getString("role");
+    			if(role.equals("M")){
+    				session.setAttribute("userId",id);
+    				session.setMaxInactiveInterval(30 * 60);
+    				response.sendRedirect("errorPage.jsp?type=AccessDenied");
+    			}
+			}
+    		
+     } catch (Exception e) {
+			response.sendRedirect("errorPage.jsp");
+     }
+%>
 
 <nav class="navbar navbar-expand-lg navbar-custom navbar-dark ">
  		 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

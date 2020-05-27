@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>Product Detail</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./CSS/productDetail.css">
 </head>
@@ -55,10 +55,7 @@ String category;
     		 </div>
   		    </li>
  		   </ul>
-   		 <form class="form-inline my-2 my-lg-0">
-   		   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    		  <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
-         </form>
+
    		 <ul  class="navbar-nav mr-right dropleft" style="margin-left:20px" >
          		 <li class="nav-item dropdown ">
         <%
@@ -106,6 +103,10 @@ String category;
       	</ul>   
   </div>
 </nav>
+<br><br>
+<div class="container justify-content-center ">
+<div class="row justify-content-center">
+
 <%
 String productId = request.getParameter("productId");
 
@@ -124,32 +125,38 @@ String productId = request.getParameter("productId");
     		pstmt.setString(1,productId);
     		rs = pstmt.executeQuery();
     		
-       		out.print("<div class=\"container \">");
-       		out.print("<div class=\"row \">");
     		if(rs.next()){
 				out.print(
-						"<div class=\"col-4 \">"+
+						"<div class=\"col-md-8  text-center\">"+
 						"<h2 class=\"text-warning\">"+rs.getString("productName")+"</h2>" +
 					    "<img src='."+rs.getString("imageLocation")+"' class=\"productImg\" alt='productImage'>"+
 						"</div>" +
-					   	"<div class=\"col-8 \">" +
-						"<div class=\"text-white\">"+rs.getString("briefDescription")+"</div>"+
-						"<div class=\"text-white\">"+rs.getString("detailDescription")+"</div>"+
-						"<div class=\"text-white\">"+String.format("%.2f",rs.getDouble("costPrice"))+"</div>"+
-						"<div class=\"text-white\">"+String.format("%.2f",rs.getDouble("retailPrice"))+"</div>"+
-						"<div class=\"text-white\">"+rs.getString("productCategory")+"</div>" +
-						"</div>"
+					   	"<div class=\"col-md-4 text-left\">" +
+						"<p class=\"text-warning\">Brief Description:</p>"+
+						"<p class=\"text-white\">"+rs.getString("briefDescription")+"</p>"+
+						"<p class=\"text-warning\">Detailed Description:</p>"+
+						"<p class=\"text-white\">"+rs.getString("detailDescription")+"</p>"+
+						"<p class=\"text-warning\">Cost Price:</p>"+
+						"<p class=\"text-white\">"+String.format("%.2f",rs.getDouble("costPrice"))+"</p>"+
+						"<p class=\"text-warning\">Retail Price:</p>"+
+						"<p class=\"text-white\">"+String.format("%.2f",rs.getDouble("retailPrice"))+"</p>"+
+						"<p class=\"text-warning\">Product Category:</p>"+
+						"<p class=\"text-white\">"+rs.getString("productCategory")+"</p>" +
+						"<p class=\"text-warning\">Discount Code:</p>"+
+						"<form class=\"form-inline my-2 my-lg-0\"><input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"DISCOUNT CODE\" aria-label=\"Search\">\n<button class=\"btn btn-warning my-2 my-sm-0\" type=\"submit\">APPLY</button></form></div>"
 						);
     		}
     		else{
     			out.print("<p>There is an error retrieving the item!</p>");
     		}
-       		out.print("</div>");
-       		out.print("</div>");
      } catch (Exception e) {
 			out.print("<p>There is an error retrieving the item!</p>");
 	 }
 %>
+
+</div>
+</div>
+
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

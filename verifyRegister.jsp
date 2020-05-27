@@ -12,7 +12,7 @@
 String name = request.getParameter("fname")+" "+request.getParameter("lname");
 String password = request.getParameter("pwd");
 String passwordConfirm = request.getParameter("pwdc");
-if(!password.equals(passwordConfirm))  response.sendRedirect("CustomerRegistration.jsp?errorCode=invalidPw"); 
+if(!password.equals(passwordConfirm))  {response.sendRedirect("CustomerRegistration.jsp?errorCode=invalidPw"); return;} 
 String email = request.getParameter("email");
 String address = request.getParameter("address");
 String phoneNoStr = request.getParameter("phoneNo");
@@ -42,10 +42,10 @@ int count=0;
      count = pstmt.executeUpdate();
      conn.close(); 
 	
-		response.sendRedirect("successPage.jsp?type=Register");
+	 response.sendRedirect("successPage.jsp?type=Register");
 
 } catch (Exception e) {
-   out.print("The email has been used!<br>Server error!");
+	 response.sendRedirect("CustomerRegistration.jsp?errorCode=invalidEmail");
 }
 %>
 </body>
