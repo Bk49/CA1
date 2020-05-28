@@ -8,6 +8,9 @@
 <title>Product Detail</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./CSS/productDetail.css">
+<link rel="stylesheet" type="text/css" href="./CSS/footer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom navbar-dark ">
@@ -203,6 +206,7 @@ String productId = request.getParameter("productId");
 </div>
 </div>
 
+<%@ include file = "footer.jsp" %>
 
 
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
