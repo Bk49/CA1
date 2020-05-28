@@ -98,11 +98,11 @@ int userId = (int)session.getAttribute("userId");
     		    					"<img src='."+rs.getString("pfp")+"' alt='userPfp' class='profilePic'>"+
     							"</div>" +
 	   		   		  		    "<div class='col-md-6 text-center padding-0'>" +	
-	   	    		  			 "<form action='updateDetails.jsp' class='formProfile'>"+
+	   	    		  			 "<form onsubmit='pfpCheck()' action='updateDetails.jsp' class='formProfile'>"+
      								"<input type='hidden' value='"+userId+"'/>"+
     								"<div><label class='text-warning'>Name</label><br><input type='text' name='name' value='"+rs.getString("name")+"' required></div>"+
     								"<div><label class='text-warning'>Email</label><br><input type='text' name='email' value='"+rs.getString("email")+"' required></div>"+
-    								"<div><label class='text-warning'>Profile Picture Link or Directory</label><br><input type='text' name='pfp' value='"+rs.getString("pfp")+"'></div>"+
+    								"<div><label class='text-warning'>Profile Picture Link or Directory</label><br><input type='text' id='pfp' name='pfp' value='"+rs.getString("pfp")+"'></div>"+
     								"<div><label class='text-warning'>Phone Number</label><br>s<input type='number' name='phoneNo' value='"+rs.getString("phoneNo")+"'></div>"+
 									"<input type='submit' class='submit bg-warning col-12' value='Update Profile Details'><br>"+
 								 "</form>"+
@@ -124,7 +124,14 @@ int userId = (int)session.getAttribute("userId");
 </div>
 
 <%@ include file = "footer.jsp" %>
+<script>
+function pfpCheck(){
+	if(document.getElementById("pfp").value == ""){
+		document.getElementById("pfp").value = "/images/u101.png"
+	}	
+}
 
+</script>
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
