@@ -23,7 +23,7 @@
             <h6>Quick Links</h6>
             <ul class="footer-links">
               <li><a href="Home.jsp">Home</a></li>
-              <li><a href="profilePage.jsp">Profile</a></li>
+              <li><a href="ProductListing.jsp">All Products</a></li>
               <li><a href="ProductCategory.jsp">Categories</a></li>
             </ul>
           </div>
@@ -33,7 +33,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by SHOPMANIA
+            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by SHOPMANIA
             </p>
           </div>
 
