@@ -16,51 +16,18 @@
  		 </button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
   		  <ul class="navbar-nav mr-auto">
-    		  <li class="nav-item active">
-    		    <a class="nav-link" href="Home.jsp">Home</a>
+    		  <li class="nav-item">
+    		    <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
     		  </li>
-    		  <li class="nav-item dropdown">
-    		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   		        Categories
-    		    </a>
-   		     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-   		     <%
-String category;
-    try {
-
-           
-          //String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
-          String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
-
-          Connection conn = DriverManager.getConnection(connURL); 
-          Statement stmt = conn.createStatement();
-
-          String sqlStr = "SELECT DISTINCT productCategory FROM product";         
-          ResultSet rs = stmt.executeQuery(sqlStr);
-
-          while (rs.next()) {
-              category = rs.getString("productCategory");
-              
-              // Style this line of code!
-              out.print("<a href='ProductListing.jsp?category="+category+"' class='dropdown-item'>"+category.toUpperCase()+"</a><br>");
-          }
-        
-          conn.close();
-     } catch (Exception e) {
-        out.print("Error :" + e);
-     }
-%>
-    		 </div>
-  		    </li>
+    		  <li class="nav-item">
+    		    <a class="nav-link" href="ProductCategory.jsp">Categories <span class="sr-only">(current)</span></a>
+    		  </li>
  		   </ul>
+
    		 <ul  class="navbar-nav mr-right dropleft" style="margin-left:20px" >
          		 <li class="nav-item dropdown ">
         <%
 	int id = 0;
-	//String parseId = request.getParameter("id");
-	//if(parseId != null){
-	//	id = Integer.parseInt(parseId); 
-	//}
 	if(session.getAttribute("userId")!=null){
 	id = (int)session.getAttribute("userId");
 	}

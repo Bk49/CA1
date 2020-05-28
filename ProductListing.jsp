@@ -16,51 +16,18 @@
  		 </button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
   		  <ul class="navbar-nav mr-auto">
-    		  <li class="nav-item active">
+    		  <li class="nav-item">
     		    <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
     		  </li>
-    		  <li class="nav-item dropdown">
-    		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   		      Categories
-    		    </a>
-   		     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-   		     <%
-String category;
-    try {
+    		  <li class="nav-item">
+    		    <a class="nav-link" href="ProductCategory.jsp">Categories <span class="sr-only">(current)</span></a>
+    		  </li>
+ 		   </ul>
 
-           
-          //String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
-          String connURL = "jdbc:mysql://localhost:3306/jad?user=root&password=khyelerk12KL&serverTimezone=UTC";
-
-          Connection conn = DriverManager.getConnection(connURL); 
-          Statement stmt = conn.createStatement();
-
-          String sqlStr = "SELECT DISTINCT productCategory FROM product";         
-          ResultSet rs = stmt.executeQuery(sqlStr);
-
-          while (rs.next()) {
-              category = rs.getString("productCategory");
-              
-              // Style this line of code!
-              out.print("<a href='ProductListing.jsp?category="+category+"' class='dropdown-item'>"+category.toUpperCase()+"</a><br>");
-          }
-        
-          conn.close();
-     } catch (Exception e) {
-        out.print("Error :" + e);
-     }
-%>
-    		 </div>
-  		    </li>
- 		   </ul>   		
    		 <ul  class="navbar-nav mr-right dropleft" style="margin-left:20px" >
          		 <li class="nav-item dropdown ">
         <%
 	int id = 0;
-	//String parseId = request.getParameter("id");
-	//if(parseId != null){
-	//	id = Integer.parseInt(parseId); 
-	//}
 	if(session.getAttribute("userId")!=null){
 	id = (int)session.getAttribute("userId");
 	}
@@ -102,6 +69,7 @@ String category;
 </nav>
 
 <%
+String category;
  category = request.getParameter("category");
 if(category == null) category = "%";
     try {
@@ -118,24 +86,36 @@ if(category == null) category = "%";
           PreparedStatement pstmt = conn.prepareStatement(sqlStr);
           pstmt.setString(1,category);
   		  rs = pstmt.executeQuery();
-     		out.print("<div class=\"container margin\">");
-       		out.print("<h2 class=\"text-warning text-center\">"+category+"</h2>");
-       		out.print("<div class=\"row row-cols-2 row-cols-md-3\">");
+     		out.print("<div class=\"container margin text-center\">");
+     		if(category.equals("%")){
+           		out.print("<h2 class=\"text-warning text-center\">All Products</h2>");
+     		}else{
+           		out.print("<h2 class=\"text-warning text-center\">"+category+"</h2>");
+     		}
        		
-       		while (rs.next()) {
-       			out.print(
-            "<div class=\"col mb-4\">" +
-              "<div class=\"card cardProduct \">" +
-    		      "<a href='ProductDetail.jsp?productId="+rs.getInt("productId")+"'>"+
-                    "<img src='."+rs.getString("imageLocation")+"' class=\"card-img-top\" alt=\"...\">" +
-                "<div class=\"card-body\">" +
-                    "<h5 class=\"card-title\">"+rs.getString("productName")+"</h5>" +
-                    "<p class=\"card-text\">"+String.format("%.2f",rs.getDouble("costPrice"))+"</p>" +
-        		  "</a>" +
-                "</div>"+
-              "</div>"+
-            "</div>");
+       		if (rs.next() == false) { 
+       			out.print("<h1 class='text-center text-white'>Products Coming Soon!<h1>"); 
+       		} 
+       		else { 
+           		out.print("<div class=\"row row-cols-2 row-cols-md-3\">");
+       			do {
+       				out.print(
+       			            "<div class=\"col mb-4\">" +
+       			              "<div class=\"card cardProduct \">" +
+       			    		      "<a href='ProductDetail.jsp?productId="+rs.getInt("productId")+"'>"+
+       			                    "<img src='."+rs.getString("imageLocation")+"' class=\"card-img-top\" alt=\"...\">" +
+       			                "<div class=\"card-body\">" +
+       			                    "<h5 class=\"card-title\">"+rs.getString("productName")+"</h5>" +
+       			                    "<p class=\"card-text\">"+String.format("%.2f",rs.getDouble("costPrice"))+"</p>" +
+       			        		  "</a>" +
+       			                "</div>"+
+       			              "</div>"+
+       			            "</div>");
+       			       			
+       			} while (rs.next()); 
        		}
+
+
             out.print("</div>");
             out.print("</div>");
           conn.close();

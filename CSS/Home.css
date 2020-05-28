@@ -35,6 +35,11 @@ body {
 	height: 300px;
 	    
 }
+
+.card-deck{
+				    background-color: rgb(35,38,47)!important;
+	
+}
 .catIcon{
     width: 150px;   
       display: block;
