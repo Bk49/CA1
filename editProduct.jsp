@@ -93,7 +93,7 @@ try {
   
       <div class="form-group">
       <label>Product Category</label>
-      <select id="productCategory" name="productCategory" class="form-control" required>
+      <select id="prodCategory" name="productCategory" class="form-control" required>
 		<option></option>
         <option>Gaming Keyboard</option>
         <option>Gaming Mouse</option>
@@ -108,7 +108,7 @@ try {
 </form>
 </div>
 <script>
-document.getElementById("productCategory").value ="<%=productCategory%>"
+document.getElementById("prodCategory").value = "<%=productCategory%>"
 </script>
 </body>
 </html>

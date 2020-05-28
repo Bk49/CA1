@@ -69,7 +69,7 @@
 </nav>
 <%
 String category;
-String[] categoryArr = new String [4];
+String[] categoryArr = new String [10];
 int i=0;
     try {
           //String connURL = "jdbc:mysql://localhost/jad?user=root&password=Devious1211&serverTimezone=UTC";
@@ -82,7 +82,9 @@ int i=0;
           while (rs.next()) {
               category = rs.getString("productCategory");
               categoryArr[i] = category;
+              
               i++;
+              
           }
           conn.close();
      } catch (Exception e) {

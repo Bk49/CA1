@@ -58,13 +58,13 @@ String role;
  		 </button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
   		  <ul class="navbar-nav mr-auto">
-    		  <li class="nav-item active">
-    		    <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
+    		  <li class="nav-item ">
+    		    <a class="nav-link" href="Administrator.jsp">Administrator <span class="sr-only">(current)</span></a>
     		  </li>
     		  <li class="nav-item active">
     		    <a class="nav-link" href="discountTable.jsp">Edit Discounts<span class="sr-only">(current)</span></a>
     		  </li>
-    		  <li class="nav-item active">
+    		  <li class="nav-item ">
     		    <a class="nav-link" href="productTable.jsp">Edit Products<span class="sr-only">(current)</span></a>
     		  </li>
  		   </ul>
@@ -83,9 +83,8 @@ String role;
 <th>No.</th>
 <th>Discount Code</th>
 <th>Discount Price</th>
-<th>Discount Amount</th>
 <th>Usage Limit</th>
-<th>Number of uses</th>
+<th>Amount Used</th>
 <th colspan="2">Discount Options</th>
 </tr>
 <%
@@ -112,7 +111,7 @@ try {
    while (rs.next()) {       
 	   discountValue = rs.getDouble("discountValue");
 	   discountType = rs.getString("discountType");
-	   if(discountType == "DIRECT"){
+	   if(discountType.equals("DIRECT")){
 		   discountPrice = "$"+String.format("%.2f",discountValue);
 	   }else{
 		   discountPrice = String.format("%.2f",discountValue)+"%";
@@ -121,7 +120,7 @@ try {
        out.print("<tr>"+
        "<td>"+count+"</td>"+
        "<td>"+rs.getString("discountCode")+"</td>"+
-       "<td>"+discountPrice+"<td>"+
+       "<td>"+discountPrice+"</td>"+
        "<td>"+rs.getInt("usageLimit")+"</td>"+
        "<td>"+rs.getInt("usageCount")+"</td>"+
        "<td><a class='btn btn-warning' href='editDiscount.jsp?discountId="+rs.getInt("discountId")+"'\">Edit</button></td>"+

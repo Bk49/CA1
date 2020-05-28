@@ -38,7 +38,7 @@
 			}else if("DiscountDelete".equals(type)){
 				out.print("<h2 class='text-success'>Discount Successfully Deleted!</h2><br>");
 			}
-			%>;
+			%>
 		</div>
 	</div>
     <div class="row">
@@ -50,7 +50,7 @@
 			}else if("DiscountAdded".equals(type) || "DiscountEdit".equals(type) || "DiscountDelete".equals(type)){
 				out.print("<a class='btn btn-warning' href='discountTable.jsp'>Discount Table</a>");
 			}
-			%>;
+			%>
 		</div>
 	</div>
 </div>
