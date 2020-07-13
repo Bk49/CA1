@@ -1,4 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- 
+  - Author(s): LIEW KHYE LERK(P1937000), ERIC NG YONG WEI(P1940211);
+  - Date: 29/5/20;
+  --%>
+  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
@@ -145,7 +149,7 @@
    		Connection conn = DriverManager.getConnection(connURL); 
    		Statement stmt = conn.createStatement();
    
-   		String sqlStr = "SELECT productId,productName, costPrice, imageLocation FROM jad.product ORDER BY RAND() LIMIT 10";         
+   		String sqlStr = "SELECT productId,productName,retailPrice, imageLocation FROM jad.product ORDER BY RAND()";         
    		ResultSet rs = stmt.executeQuery(sqlStr);
    		
    		out.print("<div class=\"container margin\">");
@@ -160,7 +164,7 @@
                 "<img src='."+rs.getString("imageLocation")+"' class=\"card-img-top\" alt=\"...\">" +
             "<div class=\"card-body\">" +
                 "<h5 class=\"card-title\">"+rs.getString("productName")+"</h5>" +
-                "<p class=\"card-text\">"+String.format("%.2f",rs.getDouble("costPrice"))+"</p>" +
+                "<p class=\"card-text\">$"+String.format("%.2f",rs.getDouble("retailPrice"))+"</p>" +
     		  "</a>" +
             "</div>"+
           "</div>"+

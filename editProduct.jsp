@@ -1,4 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- 
+  - Author(s): LIEW KHYE LERK(P1937000), ERIC NG YONG WEI(P1940211);
+  - Date: 29/5/20;
+  --%>
+  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
        <%@page import="java.sql.*" %>
 <!DOCTYPE html>

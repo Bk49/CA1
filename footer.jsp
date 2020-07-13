@@ -1,4 +1,8 @@
-<!-- Site footer -->
+<%-- 
+  - Author(s): LIEW KHYE LERK(P1937000), ERIC NG YONG WEI(P1940211);
+  - Date: 29/5/20;
+  --%>
+  <!-- Site footer -->
 <br><br>
     <footer class="site-footer">
       <div class="container">

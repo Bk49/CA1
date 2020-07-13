@@ -1,4 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- 
+  - Author(s): LIEW KHYE LERK(P1937000), ERIC NG YONG WEI(P1940211);
+  - Date: 29/5/20;
+  --%>
+  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
@@ -163,7 +167,7 @@ String productId = request.getParameter("productId");
 				out.print(
 						"<div class=\"col-md-8  text-center\">"+
 						"<h2 class=\"text-warning\">"+rs.getString("productName")+"</h2>" +
-					    "<img src='."+rs.getString("imageLocation")+"' class=\"productImg\" alt='productImage'>"+
+					    "<img src='."+rs.getString("imageLocation")+"' class=\"productImg width\" alt='productImage'>"+
 						"</div>" +
 					   	"<div class=\"col-md-4 text-left\">" +
 						"<p class=\"text-warning\">Brief Description:</p>"+

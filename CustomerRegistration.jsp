@@ -1,4 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- 
+  - Author(s): LIEW KHYE LERK(P1937000), ERIC NG YONG WEI(P1940211);
+  - Date: 29/5/20;
+  --%>
+  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +23,7 @@
 		<input type="password" name="pwd" placeholder="Password" required/>
 		<input type="password" name="pwdc" placeholder="Confirm Password" required/>
 		<input type="text" name="address" placeholder="Address"/>
-		<input type="tel" name="phoneNo" placeholder="Phone Number"/>
+		<input type="number" name="phoneNo" placeholder="Phone Number"/>
 			<%
 				String errorCode = request.getParameter("errorCode");
 				if("invalidPw".equals(errorCode)){
